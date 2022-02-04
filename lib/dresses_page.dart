@@ -1,21 +1,18 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:mest_shopper_app/model/dress.dart';
-// class Dress {
-//   final String name;
-//   final String description;
-//   final String price;
-//   final String imageName;
-
-//   Dress(this.name, this.description, this.price, this.imageName);
-// }
 
 class DressesPage extends StatelessWidget {
   DressesPage({Key? key}) : super(key: key);
   final List<Dress> dresses = [
-    Dress("Blue dress", "this is a blue dress", "NGN 100", "image name"),
-    Dress("Green dress", "this is a blue dress", "NGN 100", "image name"),
-    Dress("Violet dress", "this is a blue dress", "NGN 100", "image name"),
-    Dress("Pink dress", "this is a blue dress", "NGN 100", "image name")
+    Dress(
+        "Blue dress", "this is a blue dress", "NGN 100", "images/image1.jpeg"),
+    Dress(
+        "Green dress", "this is a blue dress", "NGN 100", "images/image2.jpeg"),
+    Dress("Violet dress", "this is a blue dress", "NGN 100",
+        "images/image3.jpeg"),
+    Dress("Pink dress", "this is a blue dress", "NGN 100", "images/image4.jpeg")
   ];
 
   // This widget is the root of your application.
@@ -27,12 +24,20 @@ class DressesPage extends StatelessWidget {
       ),
       body: ListView.builder(
           itemCount: dresses.length,
-          itemBuilder: (BuildContext context, int pos) {
-            Dress item = dresses[pos];
+          itemBuilder: (BuildContext context, int index) {
+            Dress item = dresses[index];
             return ListTile(
-              leading: Icon(
-                Icons.image,
-                size: 60,
+              trailing: Icon(
+                Icons.arrow_forward_ios,
+                size: 16,
+              ),
+              leading: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: Image.asset(
+                  item.imageName,
+                  width: 70,
+                  fit: BoxFit.cover,
+                ),
               ),
               subtitle: Text(item.description),
               title: Text(item.name),
